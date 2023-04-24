@@ -1,17 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/css/bootstrap.min.css";
 
-
-
 :root {
     --color-text-default: #151F38;
     --color-bg-white: #fff;
     --color-bg-badge-theme: #151F38;
-    --color-text-badge-theme: #fff
+    --color-text-badge-theme: #fff;
+    --color-bg-avatar: #151F38;
+    --color-text-avatar: #E4E1D1;
 }
 
 :root[data-bs-theme="dark"] {
     --color-text-default: #E4E1D1;
+    --color-bg-avatar: #E4E1D1;
+    --color-text-avatar: #151F38;
     --color-bg-white: #000;
     --color-bg-badge-theme: var(--bs-yellow);
     --color-text-badge-theme: #151F38
@@ -24,6 +26,14 @@
 .bg-default-white {
     background-color: var(--color-bg-white);
     color: var(--color-text-default);
+}
+
+.bg-default-avatar {
+    background-color: var(--color-bg-avatar);
+}
+
+.text-default-avatar {
+    color: var(--color-text-avatar);
 }
 
 .text-default {

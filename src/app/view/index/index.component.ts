@@ -14,10 +14,14 @@ export class IndexComponent {
     this.username = "";
   }
 
+  /**
+   * The function saves the username in localStorage and redirects to the /memorama page if the
+   * username is not empty.
+   */
   saveusername() {
-    if (this.username) { // Verifica si el nombre de usuario no está vacío
-      localStorage.setItem('username', this.username); // Guarda el nombre de usuario en localStorage
-      this.router.navigateByUrl('/memorama'); // Redirecciona a /memorama
+    if (this.username) {
+      localStorage.setItem('username', this.username);
+      this.router.navigateByUrl('/memorama');
     }
   }
 

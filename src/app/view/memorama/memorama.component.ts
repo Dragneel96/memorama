@@ -35,19 +35,28 @@ export class MemoramaComponent {
 
   }
 
+  /**
+   * The function initializes the component by setting the username and fetching data asynchronously.
+   */
   async ngOnInit() {
     this.username = this.getusername() ?? "";
-
-    this.data = []; // Inicializar data como un arreglo vacío
+    this.data = [];
     try {
       const data: Card[] = await this.fetchData(5);
       this.data = data;
     } catch (error) {
       console.error(error);
     }
-
   }
 
+  /**
+   * This is an asynchronous function that sets the level of the game and fetches data based on the
+   * level.
+   * @param {string} [level=low] - A string parameter that determines the difficulty level of the game.
+   * It has a default value of 'low'. The function resets the game, sets the number of cards per page
+   * based on the level parameter, and then fetches data using the fetchData method. The fetched data
+   * is then stored in the data property
+   */
   async level(level: string = 'low') {
     this.resetGame();
     let perPage = 5;
@@ -66,19 +75,29 @@ export class MemoramaComponent {
     }
   }
 
-
-
-
+  /**
+   * This function retrieves the username from local storage.
+   * @returns the value of the 'username' key stored in the browser's localStorage.
+   */
   getusername() {
     return localStorage.getItem('username');
   }
 
+  /**
+   * The function removes the username from local storage and navigates to the home page.
+   */
   exit() {
     localStorage.removeItem('username');
     this.router.navigate(['/']);
   }
 
 
+  /**
+   * This function handles the logic for when a card is clicked in a memory game, checking if the
+   * selected cards match and updating the game state accordingly.
+   * @param {number} index - The index parameter is a number that represents the index of the card
+   * component that was clicked.
+   */
   async onCardsClick(index: number) {
     const cardComponentsArray = this.cardComponents.toArray();
     cardComponentsArray[index].toggleImage();
@@ -113,7 +132,10 @@ export class MemoramaComponent {
     }
   }
 
-
+  /**
+   * The function resets the game by resetting all cards to their initial state, resetting game
+   * statistics, and hiding the finish alert.
+   */
   resetGame() {
     // Step 1: Set all cards to their initial state
     const cardComponentsArray = this.cardComponents.toArray();
@@ -129,8 +151,13 @@ export class MemoramaComponent {
     this.isFinish = false
   }
 
-
-
+  /**
+   * This function calculates the percentage of hits and errors based on the total number of hits and
+   * errors.
+   * @param {number} hits - The number of successful hits or events.
+   * @param {number} errors - The "errors" parameter is a number representing the total number of
+   * errors in a given scenario.
+   */
   calculatePercentages(hits: number, errors: number) {
     const total = hits + errors;
     this.percentageHits = (hits / total) * 100;
@@ -138,6 +165,9 @@ export class MemoramaComponent {
   }
 
 
+  /**
+   * This function toggles between a light and dark theme using a theme service.
+   */
   toggleTheme(): void {
     const currentTheme = this.themeService.getCurrentTheme();
     if (currentTheme === 'light') {
@@ -148,6 +178,14 @@ export class MemoramaComponent {
   }
 
 
+  /**
+   * This function fetches data from a service, shuffles it randomly, and returns it as an array of
+   * cards.
+   * @param {number} perPage - The `perPage` parameter is a number that represents the number of items
+   * to be fetched per page from the `dataService`.
+   * @returns The `fetchData` function returns a Promise that resolves to an array of `Card` objects.
+   * If there is an error, it returns an empty array.
+   */
   async fetchData(perPage: number): Promise<Card[]> {
     try {
       const data = await this.dataService.getData(perPage).toPromise();

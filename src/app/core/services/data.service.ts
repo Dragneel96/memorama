@@ -12,12 +12,17 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   /**
-  Obtiene los datos de la API REST y los transforma en un array de objetos Card.
-  @returns Un observable que emite un array de objetos Card.
-  */
+   * This function retrieves data from an API and maps it to an array of Card objects with a default of
+   * 5 entries per page.
+   * @param {number} [perPage=5] - The `perPage` parameter is a number that specifies the number of
+   * items to be returned per page from the API. It has a default value of 5 if no value is provided.
+   * @returns The `getData` function returns an Observable of an array of `Card` objects. The `Card`
+   * objects have three properties: `uuid`, `title`, and `imageUrl`. The function retrieves data from
+   * an API endpoint using the `http.get` method and maps the retrieved data to an array of `Card`
+   * objects using the `map` operator. The `perPage` parameter is optional and defaults
+   */
   getData(perPage: number = 5): Observable<Card[]> {
     const apiUrlWithPage = `${this.apiUrl}?per_page=${perPage}`;
-
     return this.http.get<{ entries: Entry[] }>(apiUrlWithPage).pipe(
       map((data) => {
         return data.entries.map((entry) => {

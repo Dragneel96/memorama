@@ -51,3 +51,10 @@ ng serve -o --configuration production
 Cabe mencionar que no cambia, ya que unicamente se utiliza una api, por lo cual no necesita de crear enviroments de desarrollo y producción.
 
 Luego, abre tu navegador web y accede a http://localhost:4200/.
+
+## Ejecución de UnitTest
+Finalmente, ejecutar el proyecto el unit test del proyecto, ejecuta el siguiente comando:
+
+```
+ng test
+```
