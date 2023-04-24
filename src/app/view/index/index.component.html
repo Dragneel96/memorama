@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-primary bg--opacity-3" >
+    <div class="d-flex flex-column flex-md-row align-items-center  p-3 rounded-3 bg-default-white animate__animated animate__zoomIn shadow-lg">
+        <img src="https://picsum.photos/200/300" alt="Imagen" class="me-md-3 mb-3 mb-md-0 d-none d-md-block rounded-3" width="200"
+            height="300">
+        <img src="https://picsum.photos/200/100" alt="Imagen" class="me-md-3 mb-3 mb-md-0 d-block d-md-none rounded-3" width="200"
+            height="100">
+        <div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username">
+                <label for="floatingInput">Username</label>
+            </div>
+            <button type="button" class="w-100 btn btn-primary text-white fw-bold" (click)="saveusername()"
+                [disabled]="!username">Go!</button>
+        </div>
+    </div>
+</div>

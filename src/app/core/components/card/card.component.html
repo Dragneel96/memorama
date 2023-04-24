@@ -1,0 +1,13 @@
+<div class="card card--hover text-center p-3 mx-auto" [ngClass]="{'bg-default-white': showImage}">
+    <div [ngClass]="{'d-none': showImage}"
+        class="bg-default-white text-white rounded-circle animate__animated animate__flipInX animate__faster">
+        <i class="bi bi-question-lg card__icon--large"></i>
+    </div>
+    <div [ngClass]="{'d-none': !showImage}" class="card__image-container">
+        <img class="card__image animate__animated animate__flipInX animate__faster" [src]="urlImage"
+            alt="Imagen de memorama">
+    </div>
+    <div [ngClass]="{'d-none': !showImage}" class="card__footer">
+        <p class="mt-1 card__title">{{name}}</p>
+    </div>
+</div>

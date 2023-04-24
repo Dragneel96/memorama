@@ -1,0 +1,76 @@
+<div class="bg-success bg w-100 vh-100 overflow-auto bg--opacity-3 ">
+    <div class="container mt-5">
+        <div [ngClass]="{'d-none': isFinish}"
+            class="row gy-3 bg-default-white rounded-3 animate__animated animate__fadeInDown">
+            <div class="mt-2 col-12 d-flex justify-content-center align-items-center position-relative">
+                <div
+                    class="d-flex justify-content-center align-items-center bg-primary text-white rounded-circle avatar">
+                    <span class="text-white initials">{{ username | initials }}</span>
+                </div>
+                <h4 class="mt-1 ps-3">{{username | titlecase }}</h4>
+
+                <span (click)="toggleTheme()"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-theme">
+                    Theme
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-success text-white fw-bold w-100"><i
+                        class="bi bi-check-lg btn__icon"></i> hits <span
+                        class="badge rounded-pill bg-default-white">{{hits}}</span></button>
+                <button type="button" class="mt-1 btn btn-danger text-white fw-bold w-100"><i
+                        class="bi bi-x-lg btn__icon"></i> errors <span
+                        class="badge rounded-pill bg-default-white">{{errors}}</span></button>
+            </div>
+            <div class="col">
+                <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+                    <label class="btn btn-outline-success fw-bold" for="btnradio1" (click)="level()">Low</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                    <label class="btn btn-outline-primary fw-bold" for="btnradio2"
+                        (click)="level('medium')">Medium</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                    <label class="btn btn-outline-danger fw-bold" for="btnradio3" (click)="level('hard')">Hard</label>
+                </div>
+                <button type="button" class="mt-1 w-100 btn btn-primary text-white fw-bold"
+                    (click)="exit()">Exit!</button>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="progress">
+                    <div class="progress-bar bg-success text-white fw-bold" role="progressbar"
+                        style="width: {{percentageHits}}%" [attr.aria-valuenow]="percentageHits" aria-valuemin="0"
+                        aria-valuemax="100">{{hits}} hits</div>
+                    <div class="progress-bar bg-danger text-white fw-bold" role="progressbar"
+                        style="width: {{percentageErrors}}%" [attr.aria-valuenow]="percentageErrors" aria-valuemin="0"
+                        aria-valuemax="100">{{errors}} errors</div>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="{'d-none': isFinish}" class="row g-5 mt-3 pb-5 animate__animated animate__fadeInUp ">
+            <div class="col" *ngFor="let card of data; let i = index">
+                <app-card [urlImage]="card.imageUrl" [name]="card.title" [uuid]="card.uuid"
+                    (click)="onCardsClick(i)"></app-card>
+            </div>
+        </div>
+
+        <div [ngClass]="{'d-none': !isFinish}" class="alert alert-primary" role="alert">
+            <h4 class="alert-heading">¡Felicitaciones {{username | titlecase }}!</h4>
+            <p>Has completado el juego con éxito. Esperamos que hayas disfrutado jugando. Si tienes alguna duda o
+                comentario, no dudes en contactar con nosotros.</p>
+            <p class="mb-3">¡Gracias por jugar!</p>
+            <div class="progress">
+                <div class="progress-bar bg-success text-white fw-bold" role="progressbar"
+                    style="width: {{percentageHits}}%" [attr.aria-valuenow]="percentageHits" aria-valuemin="0"
+                    aria-valuemax="100">{{hits}} hits</div>
+                <div class="progress-bar bg-danger text-white fw-bold" role="progressbar"
+                    style="width: {{percentageErrors}}%" [attr.aria-valuenow]="percentageErrors" aria-valuemin="0"
+                    aria-valuemax="100">{{errors}} errors</div>
+            </div>
+            <button class="mt-3 btn btn-primary fw-bold" (click)="resetGame()">Volver a Jugar</button>
+        </div>
+    </div>
+</div>

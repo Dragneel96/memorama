@@ -1,0 +1,19 @@
+.btn-group>.btn-check:checked+.btn {
+    color: #fff !important;
+}
+
+.btn__icon::before {
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.initials {
+    font-size: 25px;
+    font-weight: bold;
+}

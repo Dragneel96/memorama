@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/css/bootstrap.min.css";
+
+
+
+:root {
+    --color-text-default: #151F38;
+    --color-bg-white: #fff;
+    --color-bg-badge-theme: #151F38;
+    --color-text-badge-theme: #fff
+}
+
+:root[data-bs-theme="dark"] {
+    --color-text-default: #E4E1D1;
+    --color-bg-white: #000;
+    --color-bg-badge-theme: var(--bs-yellow);
+    --color-text-badge-theme: #151F38
+}
+
+* {
+    color: var(--color-text-default);
+}
+
+.bg-default-white {
+    background-color: var(--color-bg-white);
+    color: var(--color-text-default);
+}
+
+.text-default {
+    color: var(--color-text-default);
+}
+
+.bg-theme {
+    background-color: var(--color-bg-badge-theme);
+    color: var(--color-text-badge-theme);
+    cursor: pointer;
+}
+
+.bg-theme:hover {
+    box-shadow: rgba(32, 104, 213, 0.35) 0px 5px 15px;
+}
+
+.start-100 {
+    left: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .start-100 {
+        left: 92% !important;
+    }
+}
+
+.bg--opacity-3 {
+    --bs-bg-opacity: .3;
+}
